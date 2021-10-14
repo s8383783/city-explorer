@@ -11,7 +11,8 @@ class Forms extends React.Component {
             city: {},
             cityGoog: '',
             map: '',
-            error: ''
+            error: '',
+            weather: {}
         };
 
     }
@@ -25,6 +26,13 @@ class Forms extends React.Component {
         this.getLocationMap(event);
 
     };
+    getWeather = async (event) => {
+        const wAPI = `https://api.weatherbit.io/v2.0/current?key=${process.env.WEATHER_KEY}&${this.state.city.lat}&${this.state.city.lon}`
+        const wResponse = await axios.get(wAPI);
+        this.setState({
+            weather: wResponse.data[0]
+        })
+    }
     getLocationMap = async (event) => {
         // event.preventDefault();
         const API = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.cityGoog}&format=json`
