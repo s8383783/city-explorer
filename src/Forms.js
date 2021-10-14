@@ -10,7 +10,8 @@ class Forms extends React.Component {
         this.state = {
             city: {},
             cityGoog: '',
-            map: ''
+            map: '',
+            error: ''
         };
 
     }
@@ -27,20 +28,29 @@ class Forms extends React.Component {
     getLocationMap = async (event) => {
         // event.preventDefault();
         const API = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.cityGoog}&format=json`
-        const response = await axios.get(API)
-        let mapURL = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.state.city.lat},${this.state.city.lon}&zoom=14&size=250x250`
-        this.setState({
-            city: response.data[0],
-            map: mapURL
-        })
+        try {
+            const response = await axios.get(API)
+            let mapURL = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.state.city.lat},${this.state.city.lon}&zoom=14&size=250x250`
+            this.setState({
+                city: response.data[0],
+                map: mapURL,
+                error: ''
+            })
+        }
+        catch (error) {
+            this.setState({
+                error: `${error} Oops! We could not find ${this.state.cityGoog}. Try again`
+            })
+
+        }
 
 
 
     }
     render() {
         return (
-            <div id = "form2" >
-                
+            <div id="form2" >
+
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasic">
                         <Form.Label>Enter City</Form.Label>
@@ -53,6 +63,12 @@ class Forms extends React.Component {
                     </Form.Group>
 
                 </Form>
+                {this.state.error ?
+                    <>
+                        <h2> {this.state.error} </h2>
+                    </>
+                    : null
+                }
 
                 {this.state.city ?
                     <>
@@ -61,14 +77,14 @@ class Forms extends React.Component {
                             <Card.Body>
                                 <Card.Title>{this.state.city.display_name}</Card.Title>
                                 <Card.Text>
-                                Latitude: {this.state.city.lat}
-                                <br/>
-                                Longitude: {this.state.city.lon}
+                                    Latitude: {this.state.city.lat}
+                                    <br />
+                                    Longitude: {this.state.city.lon}
                                 </Card.Text>
                                 <Button variant="primary">Go somewhere</Button>
                             </Card.Body>
                         </Card>
-                        
+
 
                     </>
                     : null
