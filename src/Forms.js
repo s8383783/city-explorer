@@ -41,18 +41,7 @@ class Forms extends React.Component {
             })
         }
     }
-    getMovies = async () => {
-        const movies = `${server}/movies?searchQuery=${this.state.cityGoog}`
-        try {
-            const movieData = await axios.get(`${movies}`);
-            const movieList = movieData.data[0];
-            this.setState({ movieList: movieList, });
-        } catch (error) {
-            console.log(error);
-            this.setState({ error: `${error}. The server could not find any movies. Please try again.`, })
-        }
-    }
-
+    
 getLocationMap = async (event) => {
     // event.preventDefault();
     const API = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.cityGoog}&format=json`
