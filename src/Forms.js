@@ -11,7 +11,9 @@ class Forms extends React.Component {
             city: {},
             cityGoog: '',
             map: '',
-            error: ''
+            error: '',
+            weather: {},
+            movieList: ''
         };
 
     }
@@ -25,6 +27,32 @@ class Forms extends React.Component {
         this.getLocationMap(event);
 
     };
+    getWeather = async () => {
+        try{
+        const wAPI = `https://api.weatherbit.io/v2.0/current?key=${process.env.WEATHER_KEY}&${this.state.city.lat}&${this.state.city.lon}`
+        const wResponse = await axios.get(wAPI);
+        this.setState({
+            weather: wResponse.data[0]
+        })
+    }
+    catch (error){
+        this.setState({
+            error: `${error}. Could not find city. Try again.`
+        })
+    }
+    }
+        getMovies = async () => {
+            const movies = `${server}/movies?searchQuery=${this.state.cityGoog}`
+            try {
+              const movieData = await axios.get(`${movies}`);
+              const movieList = movieData.data[0];
+              this.setState({ movieList: movieList, });
+            } catch (error) {
+              console.log(error);
+              this.setState({ error: `${error}. The server could not find any movies. Please try again.`, })
+            }
+          }
+    }
     getLocationMap = async (event) => {
         // event.preventDefault();
         const API = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.cityGoog}&format=json`
