@@ -1,4 +1,4 @@
-# Project Name
+# City Explorer
 
 **Author**: Shania Kimbrough
 **Version**: 1.0.0 
@@ -23,7 +23,6 @@ JS
 
 ## Credit and Collaborations
 
-
 Name of feature: Form
 
 Estimate of time needed to complete: 2 hours
@@ -35,25 +34,25 @@ Finish time: 1900
 Actual time needed to complete: 2000
 
 
-Name of feature: ________________________________
+Name of feature: Map________________________________
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 1 hours _____
 
-Start time: _____
+Start time: 1200 _____
 
-Finish time: _____
+Finish time: 1300_____
 
-Actual time needed to complete: _____
+Actual time needed to complete: 1 hour _____
 
-Name of feature: ________________________________
+Name of feature: Error________________________________
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 45 mins_____
 
-Start time: _____
+Start time: 1300_____
 
-Finish time: _____
+Finish time: 1400 _____
 
-Actual time needed to complete: _____
+Actual time needed to complete: 1 hour_____
 
 Name of feature: ________________________________
 
