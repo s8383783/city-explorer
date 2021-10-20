@@ -12,7 +12,7 @@ class Forms extends React.Component {
         this.state = {
             city: {},
             cityGoog: '',
-            map: '',
+            citymap: '',
             error: '',
             weather: [],
             movies: []
@@ -39,7 +39,9 @@ class Forms extends React.Component {
                 map: '',
                 error: ''
             })
-
+            this.getWeather();
+            this.getMovies();
+            this.getMap();
         }
         catch (error) {
             this.setState({
@@ -48,8 +50,8 @@ class Forms extends React.Component {
 
         }
 
-        this.getWeather();
-        this.getMovies();
+        
+    
     };
 
     getWeather = async () => {
@@ -90,7 +92,12 @@ class Forms extends React.Component {
         
     }
 
+getMap = () => {
+    let mapURL = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.state.city.lat},${this.state.city.lon}&zoom=10&size=400x400&format=png&maptype=<MapType>&markers=icon:<icon>|<latitude>,<longitude>&markers=icon:<icon>|<latitude>,<longitude>`;
 
+    this.setState({citymap: mapURL});
+
+}
     render() {
         return (
             <div id="form2" >
@@ -117,7 +124,7 @@ class Forms extends React.Component {
                 {this.state.city ?
                     <>
                         <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.state.city.lat},${this.state.city.lon}&zoom=14&size=250x250`} />
+                            <Card.Img variant="top" src= {this.state.citymap}/>
                             <Card.Body>
                                 <Card.Title>{this.state.city.display_name}</Card.Title>
                                 <Card.Text>
