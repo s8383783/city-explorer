@@ -4,6 +4,7 @@ import Forms from './Forms.js';
 import React from 'react';
 import Header from './Header';
 import Weather from './Weather';
+import Movies from './Movies'
 
 class App extends React.Component {
   render() {
@@ -12,6 +13,7 @@ class App extends React.Component {
       <Forms />
       <Header />
       <Weather />
+      <Movies />
       </div>
     )
   }

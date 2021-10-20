@@ -1,7 +1,7 @@
 # City Explorer
 
 **Author**: Shania Kimbrough
-**Version**: 1.0.0 
+**Version**: 1.0.2
 
 Netlify: https://cityexplorin.netlify.app
 
