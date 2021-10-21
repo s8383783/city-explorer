@@ -56,10 +56,10 @@ class Forms extends React.Component {
 
     getWeather = async () => {
         
-        const wAPI = `${process.env.REACT_APP_SERVER}weather?lat=${this.state.city.lat}&lon=${this.state.city.lon}`;
+        const wAPI = `${process.env.REACT_APP_SERVER}/weather?lat=${this.state.city.lat}&lon=${this.state.city.lon}`;
         try {
             const wResponse = await axios.get(wAPI);
-            // console.log(wResponse);
+            console.log(process.env.REACT_APP_SERVER);
             this.setState({
                 weather: wResponse.data
             })
@@ -73,7 +73,7 @@ class Forms extends React.Component {
     }
 
     getMovies = async () => {
-        const mAPI = `${process.env.REACT_APP_SERVER}movie?query=${this.state.cityGoog}`
+        const mAPI = `${process.env.REACT_APP_SERVER}/movie?query=${this.state.cityGoog}`
         try {
             const mResponse = await axios.get(mAPI);
             console.log(mResponse);
